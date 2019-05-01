@@ -21,18 +21,24 @@ namespace fists.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<dynamic> Get()
         {
             var myFists = fists[rng.Next(fists.Length)];
-            return string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2);
+            return new {
+                text = string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2),
+                response_type = "in_channel",
+            };
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult<string> Post()
+        public ActionResult<dynamic> Post()
         {
             var myFists = fists[rng.Next(fists.Length)];
-            return string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2);
+            return new {
+                text = string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2),
+                response_type = "in_channel",
+            };
         }
    }
 }
