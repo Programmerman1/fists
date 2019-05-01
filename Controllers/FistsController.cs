@@ -17,6 +17,8 @@ namespace fists.Controllers
             ("Westside", "Eastside"),
             ("Mortar", "Pestle"),
             ("Ebony", "Ivory"),
+            ("Left", "Left Jr."),
+            ("John", "Frerichs"),
         };
 
         // GET api/values
