@@ -21,6 +21,7 @@ namespace fists.Controllers
             ("John", "Frerichs"),
             ("Tinder", "Grindr"),
             ("Smash U", "Burn U Up"),
+            ("Bob", "Bob"),
         };
 
         // GET api/values
