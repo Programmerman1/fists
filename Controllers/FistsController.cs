@@ -19,6 +19,8 @@ namespace fists.Controllers
             ("Ebony", "Ivory"),
             ("Left", "Left Jr."),
             ("John", "Frerichs"),
+            ("Tinder", "Grindr"),
+            ("Smash U", "Burn U Up"),
         };
 
         // GET api/values
