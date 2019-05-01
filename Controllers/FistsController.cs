@@ -26,5 +26,13 @@ namespace fists.Controllers
             var myFists = fists[rng.Next(fists.Length)];
             return string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2);
         }
+
+        // POST api/values
+        [HttpPost]
+        public ActionResult<string> Post()
+        {
+            var myFists = fists[rng.Next(fists.Length)];
+            return string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2);
+        }
    }
 }
