@@ -25,26 +25,36 @@ namespace fists.Controllers
             ("1", "2"),
         };
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<dynamic> Get()
-        {
-            var myFists = fists[rng.Next(fists.Length)];
+        private dynamic GetFists(string text) {
+            text = text ?? "";
+            string fistOne = null, fistTwo = null;
+            if (text.Contains(',')) {
+                fistOne = text.Substring(0, text.IndexOf(',')).Trim();
+                fistTwo = text.Substring(text.IndexOf(',') + 1).Trim();
+            } else if (text.Contains(" and ")) {
+                fistOne = text.Substring(0, text.IndexOf(" and ")).Trim();
+                fistTwo = text.Substring(text.IndexOf(" and ") + 5).Trim();
+            } else {
+                (fistOne, fistTwo) = fists[rng.Next(fists.Length)];
+            }
             return new {
-                text = string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2),
+                text = string.Format("Say hello to my friends {0} and {1}", fistOne, fistTwo),
                 response_type = "in_channel",
             };
         }
 
+        // GET api/values
+        [HttpGet]
+        public ActionResult<dynamic> Get(string text)
+        {
+            return GetFists(text);
+        }
+
         // POST api/values
         [HttpPost]
-        public ActionResult<dynamic> Post()
+        public ActionResult<dynamic> Post(string text)
         {
-            var myFists = fists[rng.Next(fists.Length)];
-            return new {
-                text = string.Format("Say hello to my friends {0} and {1}", myFists.Item1, myFists.Item2),
-                response_type = "in_channel",
-            };
+            return GetFists(text);
         }
    }
 }
