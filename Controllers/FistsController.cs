@@ -52,7 +52,7 @@ namespace fists.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult<dynamic> Post(string text)
+        public ActionResult<dynamic> Post([FromForm]string text)
         {
             return GetFists(text);
         }
