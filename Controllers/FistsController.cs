@@ -56,5 +56,19 @@ namespace fists.Controllers
         {
             return GetFists(text);
         }
+
+        [HttpPost("WebHook")]
+        public async Task<ActionResult> WebHook([FromForm] string text) {
+            string webhookUrl = Environment.GetEnvironmentVariable("WEBHOOKURL");
+            
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(Environment.GetEnvironmentVariables()));
+
+            string fists = Newtonsoft.Json.JsonConvert.SerializeObject(GetFists(text));
+
+            var client = new System.Net.Http.HttpClient();
+            await client.PostAsync(webhookUrl, new System.Net.Http.StringContent(fists));
+
+            return NoContent();
+        }
    }
 }
