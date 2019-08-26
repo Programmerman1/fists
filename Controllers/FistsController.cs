@@ -38,8 +38,25 @@ namespace fists.Controllers
                 (fistOne, fistTwo) = fists[rng.Next(fists.Length)];
             }
             return new {
-                text = string.Format("Say hello to my friends {0} and {1}", fistOne, fistTwo),
+                text = string.Format("Say hello to my friends", fistOne, fistTwo),
                 response_type = "in_channel",
+                attachments = new [] {
+                    new {
+                        fallback = string.Format("{0} and {1}", fistOne, fistTwo),
+                        fields = new [] {
+                            new {
+                                title = "Left Fist",
+                                value = fistOne,
+                                @short = true,
+                            },
+                            new {
+                                title = "Right Fist",
+                                value = fistTwo,
+                                @short = true,
+                            },
+                        },
+                    }
+                }
             };
         }
 
@@ -61,8 +78,6 @@ namespace fists.Controllers
         public async Task<ActionResult> WebHook([FromForm] string text) {
             string webhookUrl = Environment.GetEnvironmentVariable("WEBHOOKURL");
             
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(Environment.GetEnvironmentVariables()));
-
             string fists = Newtonsoft.Json.JsonConvert.SerializeObject(GetFists(text));
 
             var client = new System.Net.Http.HttpClient();
