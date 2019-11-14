@@ -2,7 +2,7 @@
 Say hello
 
 GET or POST https://fists.azurewebsites.net/api/fists
-`Say hello to my friends LEFT and RGHT`
+`Say hello to my friends LEFT and RIGHT`
 
 ## Purpose
 This is a proof-of-concept Slack app. It serves little actual purpose, but it is fun.
