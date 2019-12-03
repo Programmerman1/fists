@@ -23,6 +23,7 @@ namespace fists.Controllers
             ("Smash U", "Burn U Up"),
             ("Bob", "Bob"),
             ("1", "2"),
+            ("SEND", "HELP"),
         };
 
         private dynamic GetFists(string text) {
