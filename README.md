@@ -4,6 +4,19 @@ Say hello
 GET or POST https://fists.azurewebsites.net/api/fists
 `Say hello to my friends Mortar and Pestle`
 
+## Using in Slack
+Assuming you've bound `/fists` to this app, there are two primary uses
+```
+/fists
+```
+Chooses one of the random fist pairs and returns it
+
+```
+/fists leftFist, rightFist
+/fists leftFist and rightFist
+```
+Uses the provided fists
+
 ## Purpose
 This is a proof-of-concept Slack app. It serves little actual purpose, but it is fun.
 
