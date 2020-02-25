@@ -10,6 +10,7 @@ namespace fists.Controllers
     [ApiController]
     public class FistsController : ControllerBase
     {
+        static System.Security.Cryptography.RandomNumberGenerator crng = new System.Security.Cryptography.RNGCryptoServiceProvider();
         static Random rng = new Random();
         static (string, string)[] fists = new (string, string)[] {
             ("Jack Johnson", "Tom O'Leary"),
@@ -26,6 +27,20 @@ namespace fists.Controllers
             ("SEND", "HELP"),
         };
 
+        private string ReplaceRandomWithRandomString(string fist) {
+            if ("random".Equals(fist, StringComparison.OrdinalIgnoreCase)) {
+                var bytes = new byte[64];
+                IEnumerable<byte> filteredBytes;
+                do {
+                    crng.GetBytes(bytes);
+                    filteredBytes = bytes.Where(b => b > '\x20' && b < '\x7f' && b != '"' && b != '\\');
+                } while (filteredBytes.Count() < 20);
+
+                return new string(filteredBytes.Take(20).Select(b => (char)b).ToArray());
+            }
+            return fist;
+        }
+
         private dynamic GetFists(string text) {
             text = text ?? "";
             string fistOne = null, fistTwo = null;
@@ -38,6 +53,8 @@ namespace fists.Controllers
             } else {
                 (fistOne, fistTwo) = fists[rng.Next(fists.Length)];
             }
+            fistOne = ReplaceRandomWithRandomString(fistOne);
+            fistTwo = ReplaceRandomWithRandomString(fistTwo);
             return new {
                 text = string.Format("Say hello to my friends", fistOne, fistTwo),
                 response_type = "in_channel",
