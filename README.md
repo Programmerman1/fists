@@ -50,3 +50,7 @@ dotnet run
 set WEBHOOKURL=https://hooks.slack.com/services/[YOUR/WEBHOOK/URL]
 dotnet run
 ```
+
+## Weird Feature: CRNG-generated fists
+
+If a fist is set to "random", then it will be replaced with a CRNG-generated string.
