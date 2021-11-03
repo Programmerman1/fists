@@ -63,12 +63,12 @@ namespace fists.Controllers
                         fallback = string.Format("{0} and {1}", fistOne, fistTwo),
                         fields = new [] {
                             new {
-                                title = "Left Fist",
+                                title = "Left Fist 🤜",
                                 value = fistOne,
                                 @short = true,
                             },
                             new {
-                                title = "Right Fist",
+                                title = "🤛 Right Fist",
                                 value = fistTwo,
                                 @short = true,
                             },
